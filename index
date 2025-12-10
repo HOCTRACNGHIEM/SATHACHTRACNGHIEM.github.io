@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Bài thi Trắc nghiệm - Cấu trúc</title>
+    <!-- Tải Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cấu hình Font Inter và các thiết lập Tailwind cơ bản -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1D4ED8', // Màu xanh lam đậm
+                        'secondary': '#FBBF24', // Màu vàng
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Thiết lập kiểu chữ Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS tùy chỉnh cho hiệu ứng chuyển động mượt mà */
+        .collapse-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .collapse-content.active {
+            max-height: 500px; /* Giá trị lớn để chứa nội dung */
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans antialiased">
+
+    <!-- Header -->
+    <header class="bg-primary text-white shadow-lg">
+        <div class="max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">HỆ THỐNG KIỂM TRA NỘI BỘ</h1>
+            <nav>
+                <a href="#" class="text-white hover:text-secondary transition duration-150">Trang chủ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border-t-4 border-primary">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-6 border-b pb-2">Danh mục Bài thi Trắc nghiệm</h2>
+            <p class="text-gray-600 mb-8">Vui lòng chọn nhóm quy trình/nghiệp vụ để bắt đầu bài kiểm tra tương ứng.</p>
+
+            <!-- Cấu trúc Menu Phân Cấp -->
+            <div id="quiz-menu" class="space-y-4">
+
+                <!-- 1. Thi Quy trình -->
+                <div class="level-1">
+                    <button onclick="toggleCollapse(this)" class="w-full text-left p-4 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-blue-800 transition duration-200 flex justify-between items-center">
+                        <span class="text-xl">1. THI QUY TRÌNH</span>
+                        <svg class="w-5 h-5 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <div class="collapse-content ml-4 mt-2 space-y-3">
+                        <!-- 1.1. Quy trình an toàn -->
+                        <div class="level-2">
+                            <button onclick="toggleCollapse(this)" class="w-full text-left p-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition duration-200 flex justify-between items-center">
+                                <span class="text-lg">1.1. Quy trình An toàn</span>
+                                <svg class="w-4 h-4 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+
+                            <div class="collapse-content ml-4 mt-2 space-y-2 p-2">
+                                <a href="#" class="block p-3 bg-white border border-gray-200 rounded-lg text-gray-700 hover:bg-secondary hover:text-white transition duration-200 shadow-sm">
+                                    <span class="font-normal">1.1.1. Nhóm Cao áp</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                                </a>
+                                <a href="#" class="block p-3 bg-white border border-gray-200 rounded-lg text-gray-700 hover:bg-secondary hover:text-white transition duration-200 shadow-sm">
+                                    <span class="font-normal">1.1.2. Nhóm Hạ áp</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                                </a>
+                                <a href="#" class="block p-3 bg-white border border-gray-200 rounded-lg text-gray-700 hover:bg-secondary hover:text-white transition duration-200 shadow-sm">
+                                    <span class="font-normal">1.1.3. Nhóm Hỗ trợ</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 1.2. Quy trình kinh doanh -->
+                        <div class="level-2">
+                            <button onclick="toggleCollapse(this)" class="w-full text-left p-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition duration-200 flex justify-between items-center">
+                                <span class="text-lg">1.2. Quy trình Kinh doanh</span>
+                                <svg class="w-4 h-4 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+
+                            <div class="collapse-content ml-4 mt-2 space-y-2 p-2">
+                                <a href="#" class="block p-3 bg-white border border-gray-200 rounded-lg text-gray-700 hover:bg-secondary hover:text-white transition duration-200 shadow-sm">
+                                    <span class="font-normal">1.2.1. Nhóm DVKH</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                                </a>
+                                <a href="#" class="block p-3 bg-white border border-gray-200 rounded-lg text-gray-700 hover:bg-secondary hover:text-white transition duration-200 shadow-sm">
+                                    <span class="font-normal">1.2.2. Nhóm Thu ghi</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                                </a>
+                                <a href="#" class="block p-3 bg-white border border-gray-200 rounded-lg text-gray-700 hover:bg-secondary hover:text-white transition duration-200 shadow-sm">
+                                    <span class="font-normal">1.2.3. Nhóm Đo đếm</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2. Nghiệp Vụ -->
+                <div class="level-1">
+                    <button onclick="toggleCollapse(this)" class="w-full text-left p-4 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-blue-800 transition duration-200 flex justify-between items-center">
+                        <span class="text-xl">2. NGHIỆP VỤ</span>
+                        <svg class="w-5 h-5 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <div class="collapse-content ml-4 mt-2 space-y-3">
+                        <!-- 2.1. Kế hoạch vật tư -->
+                        <div class="level-2">
+                            <button onclick="toggleCollapse(this)" class="w-full text-left p-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition duration-200 flex justify-between items-center">
+                                <span class="text-lg">2.1. Kế hoạch Vật tư</span>
+                                <svg class="w-4 h-4 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+
+                            <div class="collapse-content ml-4 mt-2 space-y-2 p-2">
+                                <a href="#" class="block p-3 bg-white border border-gray-200 rounded-lg text-gray-700 hover:bg-secondary hover:text-white transition duration-200 shadow-sm">
+                                    <span class="font-normal">2.1.1. Nhóm Vật tư</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                                </a>
+                                <a href="#" class="block p-3 bg-white border border-gray-200 rounded-lg text-gray-700 hover:bg-secondary hover:text-white transition duration-200 shadow-sm">
+                                    <span class="font-normal">2.1.2. Nhóm Kế Hoạch</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2.2. TCNS -->
+                        <div class="level-2">
+                            <a href="#" class="w-full text-left p-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition duration-200 block">
+                                <span class="text-lg">2.2. TCNS</span> <span class="text-sm float-right opacity-70">Bắt đầu thi &rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Kết thúc Cấu trúc Menu -->
+
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="mt-12 py-4 text-center text-sm text-gray-500 border-t">
+        &copy; 2025 Hệ thống Kiểm tra. Powered by GitHub Pages.
+    </footer>
+
+    <!-- JavaScript để xử lý tính năng thu gọn/mở rộng menu (Collapse/Expand) -->
+    <script>
+        /**
+         * Hàm chuyển đổi trạng thái mở/đóng (collapse/expand) của nội dung menu.
+         * @param {HTMLElement} buttonElement - Nút (button) được nhấn.
+         */
+        function toggleCollapse(buttonElement) {
+            // Tìm phần tử chứa nội dung cần ẩn/hiện (sibling element)
+            const content = buttonElement.nextElementSibling;
+            
+            // Tìm biểu tượng mũi tên (arrow icon)
+            const icon = buttonElement.querySelector('svg');
+
+            if (content && content.classList.contains('collapse-content')) {
+                // Kiểm tra trạng thái hiện tại
+                const isActive = content.classList.contains('active');
+
+                // Đóng tất cả các menu đang mở cùng cấp (level 2) nếu cần, hoặc chỉ mở cái đang được nhấn
+                // Tuy nhiên, với cấu trúc cây, ta chỉ cần toggle (chuyển đổi)
+                
+                if (isActive) {
+                    // Đóng
+                    content.classList.remove('active');
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    // Mở
+                    content.classList.add('active');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
